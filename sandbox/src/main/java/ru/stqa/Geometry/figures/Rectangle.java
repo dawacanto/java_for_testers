@@ -13,7 +13,7 @@ public record Rectangle (double a, double b) {
 
     @Override
     public int hashCode() {
-        return Objects.hash(a, b);
+        return 1;
     }
 
     public Rectangle{
