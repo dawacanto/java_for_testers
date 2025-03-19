@@ -1,2 +1,3 @@
 rootProject.name = 'java_for_testers'
+include 'addressbook_web_tests'
 
