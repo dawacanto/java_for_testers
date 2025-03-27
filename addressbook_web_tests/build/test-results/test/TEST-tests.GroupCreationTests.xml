@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.GroupCreationTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-03-27T12:19:39" hostname="LAPTOP-2BNB7IOO" time="5.612">
+  <properties/>
+  <testcase name="GroupCreationWithFooter()" classname="tests.GroupCreationTests" time="2.979"/>
+  <testcase name="GroupCreationWithHeader()" classname="tests.GroupCreationTests" time="0.644"/>
+  <testcase name="GroupCreationEmptyName()" classname="tests.GroupCreationTests" time="0.712"/>
+  <testcase name="GroupCreation()" classname="tests.GroupCreationTests" time="0.633"/>
+  <testcase name="GroupCreationWithName()" classname="tests.GroupCreationTests" time="0.641"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
