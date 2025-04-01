@@ -11,6 +11,7 @@ public class ApplicationManager {//настройки сессии
     public  WebDriver driver;//ссылка на запуск
     private LoginHelper session;//ссылка на объект логина
     public GroupHelper groups;//ссылка на методы работы с группами
+    public ContactHelper contact;
 
     public void initial(String browser) {
         if (driver == null) {
@@ -33,6 +34,12 @@ public class ApplicationManager {//настройки сессии
         if (session == null){
             session = new LoginHelper(this);
         }return session;
+}
+
+public ContactHelper contact(){
+       if (contact == null){
+           contact = new ContactHelper(this);
+       }return contact;
 }
 
 public GroupHelper groups(){
