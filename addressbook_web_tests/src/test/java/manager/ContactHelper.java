@@ -93,6 +93,11 @@ public class ContactHelper extends HelperBase {
     private void returnToHomePage(){
         click(By.linkText("home"));
     }
+
+    public int getCount() {
+        openHomePage();
+        return manager.driver.findElements(By.name("selected[]")).size();
+    }
 }
 
 

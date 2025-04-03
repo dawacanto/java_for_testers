@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.ContactCreationTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-04-03T09:58:11" hostname="LAPTOP-2BNB7IOO" time="31.978">
+  <properties/>
+  <testcase name="[1] ContactData[firstname=, middlename=, lastname=, nickname=, title=, company=, address=, home=, mobile=, work=, fax=, email=, email2=, email3=, homepage=, bday=, bmonth=, byear=, aday=, amonth=, ayear=]" classname="tests.ContactCreationTests" time="10.147"/>
+  <testcase name="[2] ContactData[firstname=rxdn, middlename=sidwd, lastname=ihq, nickname=eoam, title=twgln, company=mdc, address=hych, home=fweoo, mobile=ezi, work=egkz, fax=fakac, email=xey, email2=adoc, email3=ovigv, homepage=bsw, bday=, bmonth=, byear=, aday=, amonth=, ayear=]" classname="tests.ContactCreationTests" time="5.431"/>
+  <testcase name="[3] ContactData[firstname=lsprbyop, middlename=enukczqmte, lastname=fpkrnh, nickname=tmmiwgoj, title=kbctdtknex, company=ehxsex, address=kxxeemtk, home=rnijxljnsf, mobile=jhtziv, work=lknripxb, fax=ubbzfowodj, email=irqumw, email2=lfuximvk, email3=scrplxzgwm, homepage=njxrfc, bday=, bmonth=, byear=, aday=, amonth=, ayear=]" classname="tests.ContactCreationTests" time="5.527"/>
+  <testcase name="[4] ContactData[firstname=iogdfzihrxxd, middlename=tovssnwjxdmkzrt, lastname=zordyabwv, nickname=slvzwyhtzhwy, title=fzxrygdbydnkjon, company=ffspyfomh, address=nkvntwxsqfft, home=cpzvbqkapoxtjkn, mobile=raqvdefwt, work=fuzwaxreymru, fax=zzcrozvdkatwqjg, email=drpkdwkuf, email2=nrgtxkzorpln, email3=izjtbxldxkfrmsm, homepage=gnlitxyhy, bday=, bmonth=, byear=, aday=, amonth=, ayear=]" classname="tests.ContactCreationTests" time="5.42"/>
+  <testcase name="[5] ContactData[firstname=allolxobrnsoymhe, middlename=ruzuyfbdzdcjfdqnokte, lastname=shqdyuuxhvox, nickname=sygquolirdutdaau, title=vufcbhesyxzmangqinja, company=dxaoweqvvzqk, address=oecyajzduqjbgefi, home=bnxfdxxyavlmssrlwkvz, mobile=tpmwqyiikxlk, work=mrytrcyzbrrlqorj, fax=nitgiwxodsxlyfhgbtmd, email=ahatckaixhjk, email2=fxmagtsndfoojrdm, email3=pwyiarawmkddqbxmmauu, homepage=musdfzbjspec, bday=, bmonth=, byear=, aday=, amonth=, ayear=]" classname="tests.ContactCreationTests" time="5.449"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

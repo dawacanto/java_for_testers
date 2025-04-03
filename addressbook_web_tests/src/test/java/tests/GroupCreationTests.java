@@ -1,40 +1,54 @@
 package tests;
 
 import model.GroupData;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class GroupCreationTests extends TestBase {
 
 
-    @Test
-    public void GroupCreation() {
-        app.groups().createGroup(new GroupData("fam", "fam header", "fam footer"));
+    public static List<GroupData> groupProvider() {
+        var result = new ArrayList<GroupData>();
 
+        for (var name: List.of("", "group")){
+            for (var header: List.of("","some header")){
+                for (var footer: List.of("", "some footer")){
+                    result.add(new GroupData(name, header, footer));
+                }
+            }
+        }
+        for (int i = 0; i < 5; i++){
+        result.add(new GroupData(randomString(i*9),randomString(i*10),randomString(i*8)));
+        }
+        return result;
     }
 
-    @Test
-    public void GroupCreationEmptyName() {
-        app.driver.findElement(By.linkText("groups")).click();
-        app.groups().createGroup(new GroupData());
-
+    public static List<GroupData> negativeGroupProvider() {
+        var result = new ArrayList<GroupData>(List.of(
+                new GroupData("group name'","","")));
+        return result;
     }
 
-    @Test
-    public void GroupCreationWithName() {
-        app.groups().createGroup(new GroupData().withName("some name"));
-
+    @ParameterizedTest
+    @MethodSource("groupProvider")
+    public void canCreatManyGroups(GroupData group) {
+        int groupCount = app.groups().getCount();
+        app.groups().createGroup(group);
+        int newGroupCount = app.groups().getCount();
+        Assertions.assertEquals (groupCount+1, newGroupCount);
+    }
+    @ParameterizedTest
+    @MethodSource("negativeGroupProvider")
+    public void cantCreateGroup(GroupData group) {
+        int groupCount = app.groups().getCount();
+        app.groups().createGroup(group);
+        int newGroupCount = app.groups().getCount();
+        Assertions.assertEquals (groupCount, newGroupCount);
     }
 
-    @Test
-    public void GroupCreationWithHeader() {
-        app.groups().createGroup(new GroupData().withHeader("some name"));
 
-    }
-
-    @Test
-    public void GroupCreationWithFooter() {
-        app.groups().createGroup(new GroupData().withFooter("some name"));
-
-    }
 }

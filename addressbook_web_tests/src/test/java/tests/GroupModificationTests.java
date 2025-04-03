@@ -7,7 +7,7 @@ public class GroupModificationTests extends TestBase {
 
     @Test
     void canModificateGroup(){
-        if (!app.groups().isGroupPresent()) {
+        if (app.groups().getCount() == 0) {
             app.groups().createGroup(new GroupData("fam", "fam header", "fam footer"));
         }
         app.groups().modifyGroup(new GroupData().withName("name2"));
