@@ -13,7 +13,7 @@ public class TestBase {
         if (app == null){
             app = new ApplicationManager();
         }
-        app.initial(System.getProperty("browser", "firefox"));
+        app.initial(System.getProperty("browser", "chrome"));
     }
 
     public static String randomString(int n){
