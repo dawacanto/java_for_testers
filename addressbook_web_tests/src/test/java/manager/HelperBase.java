@@ -22,6 +22,6 @@ public class HelperBase {
 
     protected void selecter(String pointer, String number){
         WebElement dropdown = manager.driver.findElement(By.name(pointer));
-        dropdown.findElement(By.xpath("//option[. = '" + number + "']")).click();
+        dropdown.findElement(By.xpath(".//option[. = '" + number + "']")).click();
     }
 }

@@ -3,6 +3,9 @@ package manager;
 import model.ContactData;
 import org.openqa.selenium.By;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ContactHelper extends HelperBase {
 
     public ContactHelper(ApplicationManager manager) {
@@ -47,32 +50,45 @@ public class ContactHelper extends HelperBase {
         type(By.name("email2"), contact.email2());
         type(By.name("email3"), contact.email3());
         type(By.name("homepage"), contact.homepage());
-        selecter("aday", contact.aday());
-        selecter("amonth", contact.amonth());
+        selecter("aday", "-");
+        selecter("amonth", "-");
         type(By.name("ayear"), contact.ayear());
-        selecter("bday", contact.bday());
-        selecter("bmonth", contact.bmonth());
+        selecter("bday", "-");
+        selecter("bmonth", "-");
         type(By.name("byear"), contact.byear());
     }
 
-    public void modifyContact(ContactData modifiedContact) {
+    public void modifyContact(ContactData contact, ContactData modifiedContact) {
         openHomePage();
-        selectContact();
+        selectContact(contact);
         initContactModification();
         fillContactForm(modifiedContact);
         submitContactModification();
         returnToHomePage();
     }
 
-    public void removeContact() {
+    public void removeContact(ContactData contact) {
         openHomePage();
-        selectContact();
+        selectContact(contact);
         removeSelectedContact();
         returnToHomePage();
     }
 
-    private void selectContact() {
-        click(By.name("selected[]"));
+    public void removeAllContacts() {
+        openHomePage();
+        selectAllContacts();
+        removeSelectedContact();
+    }
+
+    private void selectContact(ContactData contact) {
+        click(By.cssSelector(String.format("input[value='%s']", contact.id())));
+    }
+
+    private void selectAllContacts() {
+        var checkboxes = manager.driver.findElements(By.name("selected[]"));
+        for (var checkbox: checkboxes){
+            checkbox.click();
+        }
     }
 
     private void initContactModification(){
@@ -98,6 +114,21 @@ public class ContactHelper extends HelperBase {
         openHomePage();
         return manager.driver.findElements(By.name("selected[]")).size();
     }
+    public List<ContactData> getList() {
+        openHomePage();
+        var contacts = new ArrayList<ContactData>();
+        var trs = manager.driver.findElements(By.cssSelector("tr[name='entry']"));
+        for (var tr: trs){
+            var innerTag = tr.findElements(By.tagName("td"));
+            var firstname = innerTag.get(2).getText();
+            var lastname = innerTag.get(1).getText();
+            var checkbox = tr.findElement(By.name("selected[]"));
+            var id = checkbox.getAttribute("value");
+            contacts.add(new ContactData().withId(id).withNameLastname(firstname,lastname));
+        }
+        return contacts;
+    }
+
 }
 
 

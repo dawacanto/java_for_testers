@@ -1,7 +1,12 @@
 package tests;
 
 import model.ContactData;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Random;
 
 public class ContactModificateTests extends TestBase {
 
@@ -11,6 +16,19 @@ public class ContactModificateTests extends TestBase {
         if (!app.contact().isContactPresent()) {
             app.contact().createContact(new ContactData().withFioAndNumber("Andrew", "Mark", "Sonders", "8098745792874"));
         }
-        app.contact().modifyContact(new ContactData().withFullFields("Andy", "Mick", "Sonder", "stich", "bro", "SROSanches", "Fandys, 8,4", "76845633", "3338677", "3535353", "9995643", "mando@jkd.com", "test@mls.com", "lnlsls@test.com", "4kpinf.com", "2", "January", "2008", "18", "July", "2000"));
-    }
+            var oldContacts = app.contact().getList();
+            var rnd = new Random();
+            var index = rnd.nextInt(oldContacts.size());
+            var testData = new ContactData().withNameLastname("name2","lastname2");
+            app.contact().modifyContact(oldContacts.get(index), testData);
+            var newContacts = app.contact().getList();
+            var expectedList = new ArrayList<>(oldContacts);
+            expectedList.set(index,testData.withId(oldContacts.get(index).id()));
+            Comparator<ContactData> compareById = (o1, o2) -> {
+                return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+            };
+            newContacts.sort(compareById);
+            expectedList.sort(compareById);
+            Assertions.assertEquals(newContacts, expectedList);
+        }
 }
