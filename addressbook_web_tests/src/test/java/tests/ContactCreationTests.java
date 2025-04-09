@@ -1,7 +1,9 @@
 package tests;
 
+import common.CommonFunctions;
 import model.ContactData;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -15,11 +17,21 @@ public class ContactCreationTests extends TestBase {
     public static List <ContactData> ContactProvider(){
         var result = new ArrayList<ContactData>();
         for (int i = 0; i < 5; i++){
-            result.add(new ContactData().withNameLastname(randomString(i*3),randomString(i*2)));
+            result.add(new ContactData().withNameLastname(CommonFunctions.randomString(i*3), CommonFunctions.randomString(i*2)));
         }
         return result;
 
     }
+@Test
+
+    void canCreateContact(){
+        var contact = new ContactData()
+                .withFioAndNumber(CommonFunctions.randomString(6), CommonFunctions.randomString(6), CommonFunctions.randomString(6), CommonFunctions.randomString(6))
+                .withPhoto(randomFile("src/test/resources/images/"));
+        app.contact().createContact(contact);
+}
+
+
 
    @ParameterizedTest
     @MethodSource("ContactProvider")

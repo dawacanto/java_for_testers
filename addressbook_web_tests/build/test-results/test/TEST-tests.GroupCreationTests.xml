@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.GroupCreationTests" tests="12" skipped="0" failures="0" errors="0" timestamp="2025-04-09T12:26:38" hostname="LAPTOP-2BNB7IOO" time="14.755">
+  <properties/>
+  <testcase name="[1] GroupData[id=, name=group name', header=, footer=]" classname="tests.GroupCreationTests" time="4.979"/>
+  <testcase name="[1] GroupData[id=, name=, header=, footer=]" classname="tests.GroupCreationTests" time="0.769"/>
+  <testcase name="[2] GroupData[id=, name=, header=, footer=some footer]" classname="tests.GroupCreationTests" time="0.741"/>
+  <testcase name="[3] GroupData[id=, name=, header=some header, footer=]" classname="tests.GroupCreationTests" time="0.808"/>
+  <testcase name="[4] GroupData[id=, name=, header=some header, footer=some footer]" classname="tests.GroupCreationTests" time="0.85"/>
+  <testcase name="[5] GroupData[id=, name=group, header=, footer=]" classname="tests.GroupCreationTests" time="0.836"/>
+  <testcase name="[6] GroupData[id=, name=group, header=, footer=some footer]" classname="tests.GroupCreationTests" time="0.859"/>
+  <testcase name="[7] GroupData[id=, name=group, header=some header, footer=]" classname="tests.GroupCreationTests" time="0.873"/>
+  <testcase name="[8] GroupData[id=, name=group, header=some header, footer=some footer]" classname="tests.GroupCreationTests" time="0.934"/>
+  <testcase name="[9] GroupData[id=, name=, header=, footer=]" classname="tests.GroupCreationTests" time="0.924"/>
+  <testcase name="[10] GroupData[id=, name=iguk, header=kilm, footer=pekv]" classname="tests.GroupCreationTests" time="0.983"/>
+  <testcase name="[11] GroupData[id=, name=kmqlpoiy, header=htodloob, footer=wlojxqhj]" classname="tests.GroupCreationTests" time="1.007"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,18 +1,26 @@
 package tests;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import common.CommonFunctions;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+import static tests.TestBase.app;
 
 
 public class GroupCreationTests extends TestBase {
 
 
-    public static List<GroupData> groupProvider() {
+    public static List<GroupData> groupProvider() throws IOException {
         var result = new ArrayList<GroupData>();
 
         for (var name: List.of("", "group")){
@@ -22,10 +30,11 @@ public class GroupCreationTests extends TestBase {
                 }
             }
         }
-        for (int i = 0; i < 5; i++){
-        result.add(new GroupData().withName(randomString(i*9)).withFooter(randomString(i*10)).withFooter(randomString(i*8)));
-        }
+        ObjectMapper mapper = new ObjectMapper();
+        var value = mapper.readValue(new File("groups.json"), new TypeReference<List<GroupData>>(){});
+        result.addAll(value);
         return result;
+
     }
 
     public static List<GroupData> negativeGroupProvider() {
