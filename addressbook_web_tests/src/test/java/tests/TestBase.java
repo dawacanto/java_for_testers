@@ -15,7 +15,7 @@ public class TestBase {
         if (app == null){
             app = new ApplicationManager();
         }
-        app.initial(System.getProperty("browser", "chrome"));
+        app.initial(System.getProperty("browser", "firefox"));
     }
 
     public static String randomFile(String dir){

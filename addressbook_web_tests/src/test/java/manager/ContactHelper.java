@@ -1,6 +1,7 @@
 package manager;
 
 import model.ContactData;
+import model.GroupData;
 import org.openqa.selenium.By;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("middlename"), contact.middlename());
         type(By.name("lastname"), contact.lastname());
         type(By.name("nickname"), contact.nickname());
-        attach(By.name("photo"), contact.photo());
+        //attach(By.name("photo"), contact.photo());
         type(By.name("title"), contact.title());
         type(By.name("company"), contact.company());
         type(By.name("address"), contact.address());
@@ -62,7 +63,7 @@ public class ContactHelper extends HelperBase {
     public void modifyContact(ContactData contact, ContactData modifiedContact) {
         openHomePage();
         selectContact(contact);
-        initContactModification();
+        initContactModification(contact);
         fillContactForm(modifiedContact);
         submitContactModification();
         returnToHomePage();
@@ -92,8 +93,9 @@ public class ContactHelper extends HelperBase {
         }
     }
 
-    private void initContactModification(){
-            click(By.xpath("//*[@title='Edit']"));
+    private void initContactModification(ContactData contact){
+        String id = contact.id();
+        click(By.xpath("//a[contains(@href, 'edit.php?id=" + id + "')]"));
         }
 
         private void removeSelectedContact(){

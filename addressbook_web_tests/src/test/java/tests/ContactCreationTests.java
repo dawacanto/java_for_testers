@@ -1,5 +1,7 @@
 package tests;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import common.CommonFunctions;
 import model.ContactData;
 import org.junit.jupiter.api.Assertions;
@@ -7,6 +9,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -14,13 +21,16 @@ import java.util.List;
 public class ContactCreationTests extends TestBase {
 
 
-    public static List <ContactData> ContactProvider(){
+    public static List <ContactData> ContactProvider() throws IOException {
         var result = new ArrayList<ContactData>();
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i <5; i++){
             result.add(new ContactData().withNameLastname(CommonFunctions.randomString(i*3), CommonFunctions.randomString(i*2)));
         }
+        var json = Files.readString(Paths.get("contacts.json"));
+        ObjectMapper mapper = new ObjectMapper();
+        var value = mapper.readValue(json, new TypeReference<List<ContactData>>(){});
+        result.addAll(value);
         return result;
-
     }
 @Test
 

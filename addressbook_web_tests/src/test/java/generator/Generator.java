@@ -4,9 +4,13 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import common.CommonFunctions;
+import model.ContactData;
 import model.GroupData;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -31,6 +35,10 @@ public class Generator {
         JCommander.newBuilder()
                 .addObject(generator)
                 .build().parse(args);
+        System.out.println("type = " + generator.type);
+        System.out.println("output = " + generator.output);
+        System.out.println("format = " + generator.format);
+        System.out.println("count = " + generator.count);
         generator.run();
     }
 
@@ -42,18 +50,25 @@ public class Generator {
     private void save(Object data) throws IOException {
         if ("json".equals(format)) {
             ObjectMapper mapper = new ObjectMapper();
-            mapper.enable(SerializationFeature.INDENT_OUTPUT);
+            mapper.writeValue(new File(output), data);
+        }if ("yaml".equals(format)){
+            ObjectMapper mapper = new YAMLMapper();
+            mapper.writeValue(new File(output), data);
+        }
+        if ("xml".equals(format)) {
+        ObjectMapper mapper = new XmlMapper();
             mapper.writeValue(new File(output), data);
         } else {
-        throw new IllegalArgumentException("Неизвестный формат данных"+format);
-    }
+            throw new IllegalArgumentException("Неизвестный формат данных" + format);
+        }
 }
 
     private Object generate() {
-        if ("groups".equals(type)) {
+        System.out.println(type);
+    if ("groups".equals(type)) {
             return generateGroups();
-        } else if ("contact".equals(type)) {
-            return generateContact();
+        } else if ("contacts".equals(type)) {
+            return generateContacts();
         } else {
             throw new IllegalArgumentException("Неизвестный тип данных" + type);
         }
@@ -67,8 +82,12 @@ public class Generator {
         return result;
     }
 
-    private Object generateContact() {
-        return null;
+    private Object generateContacts() {
+        var result = new ArrayList<ContactData>();
+        for (int i = 0; i < count; i++){
+            result.add(new ContactData().withFioAndNumber(CommonFunctions.randomString(i*3), CommonFunctions.randomString(i*2),CommonFunctions.randomString(i*4),CommonFunctions.randomString(i*3)));
+        }
+        return result;
     }
 }
 
