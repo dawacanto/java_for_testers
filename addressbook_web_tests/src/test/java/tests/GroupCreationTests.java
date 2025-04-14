@@ -40,7 +40,13 @@ public class GroupCreationTests extends TestBase {
         var value = mapper.readValue(json, new TypeReference<List<GroupData>>(){});
         result.addAll(value);
         return result;
+    }
 
+    public static List<GroupData> singleRandomGroup() throws IOException {
+        return List.of(new GroupData()
+                .withName(CommonFunctions.randomString(7))
+                .withHeader(CommonFunctions.randomString(6))
+                .withFooter(CommonFunctions.randomString(8)));
     }
 
     public static List<GroupData> negativeGroupProvider() {
@@ -51,18 +57,21 @@ public class GroupCreationTests extends TestBase {
 
     @ParameterizedTest
     @MethodSource("groupProvider")
-    public void canCreatManyGroups(GroupData group) {
-        var oldGroups = app.groups().getList();
+    public void canCreateGroup(GroupData group) {
+        var oldGroups = app.hbrn().getGroupList();
         app.groups().createGroup(group);
-        var newGroups = app.groups().getList();
+        var newGroups = app.hbrn().getGroupList();
         Comparator<GroupData> compareById = (o1, o2) -> {
             return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
         };
         newGroups.sort(compareById);
+        var maxId = newGroups.get(newGroups.size()-1).id();
         var expectedList = new ArrayList<>(oldGroups);
-        expectedList.add(group.withId(newGroups.get(newGroups.size()-1).id()).withHeader("").withFooter(""));
+        expectedList.add(group.withId(maxId));
         expectedList.sort(compareById);
         Assertions.assertEquals(newGroups,expectedList);
+       // var newUiGroups = app.groups().getList();
+        //Assertions.assertEquals(newGroups,newUiGroups); //нужно сравнивать по айди и именам
 
     }
     @ParameterizedTest

@@ -51,11 +51,11 @@ public class Generator {
         if ("json".equals(format)) {
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(new File(output), data);
-        }if ("yaml".equals(format)){
+        }else if ("yaml".equals(format)){
             ObjectMapper mapper = new YAMLMapper();
             mapper.writeValue(new File(output), data);
         }
-        if ("xml".equals(format)) {
+        else if ("xml".equals(format)) {
         ObjectMapper mapper = new XmlMapper();
             mapper.writeValue(new File(output), data);
         } else {

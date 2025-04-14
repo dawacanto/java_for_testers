@@ -7,13 +7,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.Properties;
+
 public class ApplicationManager {//настройки сессии
     public  WebDriver driver;//ссылка на запуск
     private LoginHelper session;//ссылка на объект логина
     public GroupHelper groups;//ссылка на методы работы с группами
     public ContactHelper contact;
+    public Properties properties;
+    public JdbcHelper jdbc;
+    public HibernateHelper hbrn;
 
-    public void initial(String browser) {
+    public void initial(String browser, Properties properties) {
+        this.properties =properties;
         if (driver == null) {
             if ("chrome".equals(browser)) {
                 driver = new ChromeDriver();
@@ -23,10 +29,10 @@ public class ApplicationManager {//настройки сессии
                 throw new IllegalArgumentException(String.format("Unknown browser %s",browser));
             }
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
-            driver.get("http://localhost/addressbook/");
+            driver.get(properties.getProperty("web.baseUrl"));
             driver.manage().window().setSize(new Dimension(1083, 961));
             driver.findElement(By.name("user")).click();
-            session().login("admin", "secret");
+            session().login(properties.getProperty("web.username"),properties.getProperty("web.password"));
         }
     }
 
@@ -35,6 +41,12 @@ public class ApplicationManager {//настройки сессии
             session = new LoginHelper(this);
         }return session;
 }
+
+    public JdbcHelper jdbc(){
+        if (jdbc == null){
+            jdbc = new JdbcHelper(this);
+        }return jdbc;
+    }
 
 public ContactHelper contact(){
        if (contact == null){
@@ -57,4 +69,9 @@ public GroupHelper groups(){
         }
     }
 
+    public HibernateHelper hbrn() {
+        if (hbrn == null){
+            hbrn = new HibernateHelper(this);
+        }return hbrn;
+    }
 }

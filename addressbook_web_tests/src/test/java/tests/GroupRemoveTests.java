@@ -12,13 +12,13 @@ public class GroupRemoveTests extends TestBase {
 
     @Test
     public void canRemoveGroup() {
-        if (app.groups().getCount() == 0) {
-            app.groups().createGroup(new GroupData("", "fam", "fam header", "fam footer"));
-        }   var oldGroups = app.groups().getList();
+        if (app.hbrn().getGroupCount() == 0) {
+            app.hbrn().createGroup(new GroupData("", "fam", "fam header", "fam footer"));
+        }   var oldGroups = app.hbrn().getGroupList();
             var rnd = new Random();
             var index = rnd.nextInt(oldGroups.size());
             app.groups().removeGroup(oldGroups.get(index));
-            var newGroups = app.groups().getList();
+            var newGroups = app.hbrn().getGroupList();
             var expectedList = new ArrayList<>(oldGroups);
             expectedList.remove(index);
             Assertions.assertEquals(newGroups, expectedList);
