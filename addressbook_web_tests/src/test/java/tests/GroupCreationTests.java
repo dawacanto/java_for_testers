@@ -7,18 +7,12 @@ import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
-import static tests.TestBase.app;
 
 
 public class GroupCreationTests extends TestBase {
@@ -70,16 +64,15 @@ public class GroupCreationTests extends TestBase {
         expectedList.add(group.withId(maxId));
         expectedList.sort(compareById);
         Assertions.assertEquals(newGroups,expectedList);
-       // var newUiGroups = app.groups().getList();
-        //Assertions.assertEquals(newGroups,newUiGroups); //нужно сравнивать по айди и именам
+
 
     }
     @ParameterizedTest
     @MethodSource("negativeGroupProvider")
     public void cantCreateGroup(GroupData group) {
-        var oldGroups = app.groups().getList();
+        var oldGroups = app.hbrn().getGroupList();;
         app.groups().createGroup(group);
-        var newGroups = app.groups().getList();
+        var newGroups = app.hbrn().getGroupList();
         Assertions.assertEquals (oldGroups, newGroups);
     }
 

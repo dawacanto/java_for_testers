@@ -4,19 +4,22 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import common.CommonFunctions;
 import model.ContactData;
+import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+import static tests.TestBase.app;
+import static tests.TestBase.randomFile;
 
 public class ContactCreationTests extends TestBase {
 
@@ -41,8 +44,6 @@ public class ContactCreationTests extends TestBase {
         app.contact().createContact(contact);
 }
 
-
-
    @ParameterizedTest
     @MethodSource("ContactProvider")
    public void canCreatManyContacts(ContactData contact) {
@@ -58,5 +59,21 @@ public class ContactCreationTests extends TestBase {
         expectedList.sort(compareById);
         Assertions.assertEquals (expectedList, newContactsList);
     }
-}
 
+
+@Test
+
+void canCreateContactInGroup(){
+    var contact = new ContactData()
+            .withFioAndNumber(CommonFunctions.randomString(6), CommonFunctions.randomString(6), CommonFunctions.randomString(6), CommonFunctions.randomString(6))
+            .withPhoto(randomFile("src/test/resources/images/"));
+    if(app.hbrn().getGroupCount() == 0) {
+        app.hbrn().createGroup(new GroupData("", "fam", "fam header", "fam footer"));
+    }   var group = app.hbrn().getGroupList().get(0);
+
+    var oldRelated = app.hbrn().getContactsInGroup(group);
+    app.contact().createContact(contact, group);
+    var newRelated = app.hbrn().getContactsInGroup(group);
+    Assertions.assertEquals(oldRelated.size()+1, newRelated.size());//!!!но нужно сравнивать также содержимое
+}
+}

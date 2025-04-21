@@ -32,4 +32,18 @@ public class JdbcHelper extends HelperBase{
         }
         return groups;
     }
+
+    public void checkConsistensy() {
+        try (
+                var conn = DriverManager.getConnection("jdbc:mysql://localhost/addressbook", "root", "");
+                var statement = conn.createStatement();
+                var result = statement.executeQuery("SELECT *FROM `address_in_groups` ag LEFT JOIN addressbook ab ON ab.id=ag.id WHERE ab.id IS NULL"))
+        {
+            while( result.next()){
+                throw new IllegalArgumentException("DB is currupted");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

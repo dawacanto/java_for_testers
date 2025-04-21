@@ -28,11 +28,11 @@ public class GroupRemoveTests extends TestBase {
 
     @Test
     void canRemoveAllGroups() {
-        if (app.groups().getCount() == 0) {
-            app.groups().createGroup(new GroupData("", "famy", "famy header", "famy footer"));
+        if (app.hbrn().getGroupCount() == 0) {
+            app.hbrn().createGroup(new GroupData("", "famy", "famy header", "famy footer"));
         }
         app.groups().removeAllGroups();
-        Assertions.assertEquals(0, app.groups().getCount());
+        Assertions.assertEquals(0, app.hbrn().getGroupCount());
 
     }
 }

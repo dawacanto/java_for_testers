@@ -1,7 +1,11 @@
 package manager;
 
 import model.ContactData;
+import model.ContactGroupBind;
+import model.GroupData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +27,19 @@ public class ContactHelper extends HelperBase {
         submitContactCreation();
         returnToHomePage();
     }
+
+    public void createContact(ContactData contact, GroupData group) {
+        openHomePage();
+        addContact();
+        fillContactForm(contact);
+        selectGroup(group);
+        submitContactCreation();
+        returnToHomePage();
+    }
+
+    private void selectGroup(GroupData group) {
+        new Select(manager.driver.findElement(By.name("new_group"))).selectByValue(group.id());    }
+
 
     private void openHomePage() {
         if (!manager.isElementPresent(By.xpath("//*[text()='All phones']"))){
@@ -131,6 +148,39 @@ public class ContactHelper extends HelperBase {
         return contacts;
     }
 
+    public void bindWithGroup(ContactData contact, GroupData group) {openHomePage();
+        selectContact(contact);
+        bindToGroup(group);
+        openSelectedGroup();
+
+    }
+
+    private void openSelectedGroup() {
+        click(By.partialLinkText("group page"));
+    }
+
+    private void bindToGroup(GroupData group) {
+        click(By.name("to_group"));
+        click(By.cssSelector("select[name='to_group'] option[value='" + group.id() + "']"));
+        click(By.name("add"));
+    }
+
+    public void unbindContact(ContactGroupBind bindToRemove) {
+        openHomePage();
+        selectNeededGroup(bindToRemove);
+        removeFromGroup(bindToRemove);
+
+    }
+
+    private void selectNeededGroup(ContactGroupBind bindToRemove) {
+        WebElement dropdown = manager.driver.findElement(By.name("group"));
+        dropdown.findElement(By.xpath(".//option[@value='"+bindToRemove.groupId+"']")).click();
+    }
+
+    private void removeFromGroup(ContactGroupBind bindToRemove) {
+        click(By.cssSelector("input[type='checkbox'][value='" + bindToRemove.contactId + "']"));
+        click(By.name("remove"));
+    }
 }
 
 

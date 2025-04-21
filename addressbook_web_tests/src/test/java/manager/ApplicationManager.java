@@ -24,6 +24,7 @@ public class ApplicationManager {//настройки сессии
             if ("chrome".equals(browser)) {
                 driver = new ChromeDriver();
             } else if ("firefox".equals(browser)){
+                System.setProperty("webdriver.gecko.driver", "C:\\tools\\geckodriver\\geckodriver.exe");
                 driver = new FirefoxDriver();
             }else{
                 throw new IllegalArgumentException(String.format("Unknown browser %s",browser));
