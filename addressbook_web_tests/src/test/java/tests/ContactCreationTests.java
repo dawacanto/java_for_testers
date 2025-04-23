@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static tests.TestBase.app;
 import static tests.TestBase.randomFile;
 
@@ -76,4 +77,5 @@ void canCreateContactInGroup(){
     var newRelated = app.hbrn().getContactsInGroup(group);
     Assertions.assertEquals(oldRelated.size()+1, newRelated.size());//!!!но нужно сравнивать также содержимое
 }
+
 }

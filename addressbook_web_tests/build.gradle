@@ -19,7 +19,6 @@ dependencies {
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.18.2'
     implementation 'com.mysql:mysql-connector-j:8.2.0'
     implementation 'com.google.protobuf:protobuf-java:4.28.2'
-    // ✅ Hibernate 6 (с поддержкой fromSession)
     implementation 'org.hibernate.orm:hibernate-core:6.6.13.Final'
 
 }

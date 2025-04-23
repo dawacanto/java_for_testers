@@ -48,12 +48,12 @@ public class HibernateHelper extends HelperBase{
         );
     }
 
-    private static ContactRecord convert (ContactData data){
-        var id = data.id();
-        if("".equals(id)){
-            id = "0";
-        }return new ContactRecord(Integer.parseInt(id), data.firstname(), data.lastname(), data.address());
-    }
+   // private static ContactRecord convert (ContactData data){
+     //   var id = data.id();
+       // if("".equals(id)){
+         //   id = "0";
+        //}return new ContactRecord(Integer.parseInt(id), data.firstname(), data.lastname(), data.address());
+    //}
 
     private static GroupRecord convert(GroupData data) {
         var id = data.id();
@@ -61,6 +61,16 @@ public class HibernateHelper extends HelperBase{
             id = "0";
         }
         return new GroupRecord(Integer.parseInt(id), data.name(), data.header(), data.footer());
+    }
+
+    private static ContactRecord convert(ContactData data) {
+        int id = 0; // всегда вставляем как "новый"
+        return new ContactRecord(
+                id,
+                data.firstname(),
+                data.lastname(),
+                data.address()
+        );
     }
 
     static List<ContactData> converterContactList(List<ContactRecord> records){

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tests.ContactsInGroups" tests="1" skipped="0" failures="1" errors="0" timestamp="2025-04-21T17:27:48" hostname="LAPTOP-2BNB7IOO" time="4.952">
+<testsuite name="tests.ContactsInGroups" tests="1" skipped="0" failures="1" errors="0" timestamp="2025-04-23T11:27:04" hostname="LAPTOP-2BNB7IOO" time="7.94">
   <properties/>
-  <testcase name="canBindContact()" classname="tests.ContactsInGroups" time="4.952">
+  <testcase name="canBindContact()" classname="tests.ContactsInGroups" time="7.94">
     <failure message="org.hibernate.exception.ConstraintViolationException: could not execute statement [Column 'company' cannot be null] [insert into addressbook (aday,address,amonth,ayear,bday,bmonth,byear,company,created,domain_id,email,email2,email3,fax,firstname,home,homepage,lastname,middlename,mobile,modified,nickname,title,work,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]" type="org.hibernate.exception.ConstraintViolationException">org.hibernate.exception.ConstraintViolationException: could not execute statement [Column 'company' cannot be null] [insert into addressbook (aday,address,amonth,ayear,bday,bmonth,byear,company,created,domain_id,email,email2,email3,fax,firstname,home,homepage,lastname,middlename,mobile,modified,nickname,title,work,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)]
 	at app//org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:62)
 	at app//org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58)
@@ -27,9 +27,9 @@
 	at app//org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:169)
 	at app//org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:267)
 	at app//org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101)
-	at app//manager.HibernateHelper.lambda$createContact$5(HibernateHelper.java:111)
+	at app//manager.HibernateHelper.lambda$createContact$5(HibernateHelper.java:121)
 	at app//org.hibernate.SessionFactory.inSession(SessionFactory.java:217)
-	at app//manager.HibernateHelper.createContact(HibernateHelper.java:108)
+	at app//manager.HibernateHelper.createContact(HibernateHelper.java:118)
 	at app//tests.ContactsInGroups.canBindContact(ContactsInGroups.java:21)
 	at java.base@17.0.14/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base@17.0.14/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
@@ -115,38 +115,6 @@
 	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-	Suppressed: java.lang.IllegalArgumentException: DB is currupted
-		at manager.JdbcHelper.checkConsistensy(JdbcHelper.java:43)
-		at tests.TestBase.checkDatabaseConsistency(TestBase.java:31)
-		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-		at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-		at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728)
-		at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
-		at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
-		at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
-		at org.junit.jupiter.engine.extension.TimeoutExtension.interceptLifecycleMethod(TimeoutExtension.java:128)
-		at org.junit.jupiter.engine.extension.TimeoutExtension.interceptAfterEachMethod(TimeoutExtension.java:110)
-		at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
-		at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
-		at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
-		at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
-		at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
-		at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
-		at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
-		at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
-		at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeMethodInExtensionContext(ClassBasedTestDescriptor.java:521)
-		at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$synthesizeAfterEachMethodAdapter$24(ClassBasedTestDescriptor.java:511)
-		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAfterEachMethods$10(TestMethodTestDescriptor.java:244)
-		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$13(TestMethodTestDescriptor.java:277)
-		at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$14(TestMethodTestDescriptor.java:277)
-		at org.junit.platform.commons.util.CollectionUtils.forEachInReverseOrder(CollectionUtils.java:217)
-		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAllAfterMethodsOrCallbacks(TestMethodTestDescriptor.java:276)
-		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAfterEachMethods(TestMethodTestDescriptor.java:242)
-		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:143)
-		... 62 more
 Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'company' cannot be null
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:118)
 	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
@@ -160,17 +128,17 @@ Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'company' c
 </failure>
   </testcase>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[Apr 21, 2025 7:27:50 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+  <system-err><![CDATA[Apr 23, 2025 1:27:06 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
 WARNING: Unable to find an exact match for CDP version 135, returning the closest version; found: 134; Please update to a Selenium version that supports CDP version 135
-Apr 21, 2025 7:27:51 PM org.hibernate.Version logVersion
+Apr 23, 2025 1:27:08 PM org.hibernate.Version logVersion
 INFO: HHH000412: Hibernate ORM core version 6.6.13.Final
-Apr 21, 2025 7:27:51 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
+Apr 23, 2025 1:27:08 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
 INFO: HHH000026: Second-level cache disabled
-Apr 21, 2025 7:27:51 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+Apr 23, 2025 1:27:08 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
 WARN: HHH10001002: Using built-in connection pool (not intended for production use)
-Apr 21, 2025 7:27:51 PM org.hibernate.dialect.Dialect checkVersion
+Apr 23, 2025 1:27:09 PM org.hibernate.dialect.Dialect checkVersion
 WARN: HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
-Apr 21, 2025 7:27:51 PM org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator initiateService
+Apr 23, 2025 1:27:09 PM org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator initiateService
 INFO: HHH10001005: Database info:
 	Database JDBC URL [jdbc:mysql://localhost/addressbook?zeroDateTimeBehavior=CONVERT_TO_NULL]
 	Database driver: com.mysql.cj.jdbc.Driver
@@ -179,11 +147,11 @@ INFO: HHH10001005: Database info:
 	Isolation level: undefined/unknown
 	Minimum pool size: 1
 	Maximum pool size: 20
-Apr 21, 2025 7:27:53 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+Apr 23, 2025 1:27:11 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-Apr 21, 2025 7:27:53 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+Apr 23, 2025 1:27:12 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 WARN: SQL Error: 1048, SQLState: 23000
-Apr 21, 2025 7:27:53 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
+Apr 23, 2025 1:27:12 PM org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions
 ERROR: Column 'company' cannot be null
 ]]></system-err>
 </testsuite>

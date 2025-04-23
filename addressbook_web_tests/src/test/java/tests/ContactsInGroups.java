@@ -18,9 +18,9 @@ public class ContactsInGroups extends TestBase{
     @Test
     public void canBindContact() {
         if (app.hbrn().getContactCount()==0) {
-            app.hbrn().createContact(new ContactData("", "Andrew", "Marsy", "Sondors", "8098745792874", "","","фтн","","","","","","","","","","6","","","7","",""));
+            app.hbrn().createContact(new ContactData("", "Alice", "Marie", "Johnson", "aj", "", "QA Engineer", "TechCorp", "123 Main St, Springfield", "555-0001", "555-1234", "555-4321", "555-9999", "alice@company.com", "aj@altmail.com", "aj.third@mail.com", "www.alicejohnson.com", "15", "March", "1990", "20", "July", "2025"));
         }if (app.hbrn().getGroupCount() == 0) {
-            app.hbrn().createGroup(new GroupData("", "fam", "fam header", "fam footer"));
+            app.hbrn().createGroup(new GroupData("0", "fam", "fam header", "fam footer"));
         }var groupsInBase = app.hbrn().getGroupList();
         var contactsInBase =app.hbrn().getContactList();
         var rndGr = new Random();
