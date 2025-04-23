@@ -6,6 +6,8 @@ import jakarta.persistence.Table;
 
 import java.util.Date;
 
+import static java.lang.Integer.parseInt;
+
 @Entity
 @Table(name = "addressbook")
 public class ContactRecord {
@@ -41,10 +43,5 @@ public class ContactRecord {
 
     public ContactRecord() {}
 
-    public ContactRecord(int id, String firstname, String lastname, String address) {
-        this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.address = address;
-    }
+    public ContactRecord(int id, String firstname, String middlename, String lastname, String nickname, String photo, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage, int bday, String bmonth, String byear, int aday, String amonth, String ayear) { this.id = id; this.firstname = firstname; this.middlename = middlename; this.lastname = lastname; this.nickname = nickname; this.title = title; this.company = company; this.address = address; this.home = home; this.mobile = mobile; this.work = work; this.fax = fax; this.email = email; this.email2 = email2; this.email3 = email3; this.homepage = homepage; this.bday = bday; this.bmonth = bmonth; this.byear = byear; this.aday = aday; this.amonth = amonth; this.ayear = ayear; }
 }

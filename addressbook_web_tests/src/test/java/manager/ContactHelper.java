@@ -99,7 +99,7 @@ public class ContactHelper extends HelperBase {
     }
 
     private void selectContact(ContactData contact) {
-        click(By.cssSelector(String.format("input[value='%s']", contact.id())));
+        click(By.cssSelector(String.format("input[type='checkbox'][name='selected[]'][value='%s']", contact.id())));
     }
 
     private void selectAllContacts() {
@@ -148,7 +148,8 @@ public class ContactHelper extends HelperBase {
         return contacts;
     }
 
-    public void bindWithGroup(ContactData contact, GroupData group) {openHomePage();
+    public void bindWithGroup(ContactData contact, GroupData group) {
+        openHomePage();
         selectContact(contact);
         bindToGroup(group);
         openSelectedGroup();
@@ -178,8 +179,8 @@ public class ContactHelper extends HelperBase {
     }
 
     private void removeFromGroup(ContactGroupBind bindToRemove) {
-        click(By.cssSelector("input[type='checkbox'][value='" + bindToRemove.contactId + "']"));
-        click(By.name("remove"));
+        click(By.cssSelector(String.format("input[type='checkbox'][name='selected[]'][value='%s']", bindToRemove.contactId)));
+        click(By.xpath("//input[@type='submit' and @name='remove' and contains(@value, 'Remove from')]"));
     }
 }
 

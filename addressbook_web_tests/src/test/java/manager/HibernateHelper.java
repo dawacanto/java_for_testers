@@ -64,13 +64,10 @@ public class HibernateHelper extends HelperBase{
     }
 
     private static ContactRecord convert(ContactData data) {
-        int id = 0; // всегда вставляем как "новый"
-        return new ContactRecord(
-                id,
-                data.firstname(),
-                data.lastname(),
-                data.address()
-        );
+        var id = data.id();
+        if("".equals(id)){
+            id = "0";
+        }return new ContactRecord (Integer.parseInt(id), data.firstname(), data.middlename(), data.lastname(), data.nickname(), data.photo(), data.title(), data.company(), data.address(), data.home(), data.mobile(), data.work(), data.fax(), data.email(), data.email2(), data.email3(), data.homepage(), Integer.parseInt(data.bday()), data.bmonth(), data.byear(), Integer.parseInt(data.aday()), data.amonth(), data.ayear());
     }
 
     static List<ContactData> converterContactList(List<ContactRecord> records){

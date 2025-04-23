@@ -41,8 +41,7 @@ public class ContactsInGroups extends TestBase{
             app.hbrn().createGroup(new GroupData("", "testGroup", "header", "footer"));
         }
         if (app.hbrn().getContactCount() == 0) {
-            app.hbrn().createContact(new ContactData(
-                    "", "Test", "User", "Contact", "123456", "", "", "", "", "", "", "", "", "", "", "", "", "1", "", "", "1", "", ""));
+            app.hbrn().createContact(new ContactData("", "Alice", "Marianne", "Johnson", "aj", "", "QA Engineer", "TechCorp", "123 Main St, Springfield", "555-0001", "555-1234", "555-4321", "555-9999", "alice@company.com", "aj@altmail.com", "aj.third@mail.com", "www.alicejohnson.com", "15", "March", "1990", "20", "July", "2025"));
         }
         List<ContactGroupBind> binds = app.hbrn().getAllContactGroupBinds();
         if (binds.isEmpty()) {
