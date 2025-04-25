@@ -149,7 +149,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void bindWithGroup(ContactData contact, GroupData group) {
-        openHomePage();
+        refresh();
         selectContact(contact);
         bindToGroup(group);
         openSelectedGroup();
@@ -167,7 +167,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void unbindContact(ContactGroupBind bindToRemove) {
-        openHomePage();
+        refresh();
         selectNeededGroup(bindToRemove);
         removeFromGroup(bindToRemove);
 
@@ -181,13 +181,13 @@ public class ContactHelper extends HelperBase {
     private void removeFromGroup(ContactGroupBind bindToRemove) {
         click(By.cssSelector(String.format("input[type='checkbox'][name='selected[]'][value='%s']", bindToRemove.contactId)));
         //click(By.xpath("//input[@type='submit' and @name='remove' and contains(@value, 'Remove from')]"));
-        click(By.xpath("//input[@name='remove'])[1]"));
+        click(By.xpath("//input[@name='remove']"));
     }
 
-    public String getPhones(ContactData contact) {
-        manager.driver.findElement(By.xpath(String.format("//input[@id='%s']", contact.id() ));
+   // public String getPhones(ContactData contact) {
+      //  manager.driver.findElement(By.xpath(String.format("//input[@id='%s']", contact.id())));
 
-    }
+   // }
 }
 
 

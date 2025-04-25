@@ -6,6 +6,7 @@ import model.ContactGroupBind;
 import model.GroupData;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Random;
 
@@ -56,7 +57,13 @@ public class ContactsInGroups extends TestBase{
         var index = rnd.nextInt(binds.size());
         ContactGroupBind bindToRemove = binds.get(index);
         app.contact().unbindContact(bindToRemove);
-        List<ContactGroupBind> updatedBinds = app.hbrn().getAllContactGroupBinds();
-        assertFalse(updatedBinds.contains(bindToRemove), "Связь не была удалена из address_in_groups!");
+        List<ContactGroupBind> after = app.hbrn().getAllContactGroupBinds();
+        if (after.isEmpty()) {
+            System.out.println("Связей больше нет.");
+        } else {
+            assertFalse(after.contains(bindToRemove), "Связь не была удалена!");
+        }
     }
-}
+
+    }
+

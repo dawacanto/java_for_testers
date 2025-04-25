@@ -9,6 +9,6 @@ public class ContactInfoTests extends TestBase{
     void TestPhones (){//добавить проверку на пустой список контактов
         var contacts = app.hbrn().getContactList();
         var contact = contacts.get(0);
-        var phones = app.contact().getPhones(contact);
+        //var phones = app.contact().getPhones(contact);
     }
 }
