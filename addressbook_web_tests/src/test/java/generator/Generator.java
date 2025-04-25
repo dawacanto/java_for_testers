@@ -13,6 +13,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static common.CommonFunctions.randomString;
 
@@ -74,21 +77,21 @@ public class Generator {
         }
     }
 
-    private Object generateGroups() {
-        var result = new ArrayList<GroupData>();
-        for (int i = 0; i < count; i++) {
-            result.add(new GroupData().withName(CommonFunctions.randomString(i * 4)).withHeader(CommonFunctions.randomString(i * 4)).withFooter(randomString(i * 4)));
+    private Object generateData(Supplier<Object> dataSupplier){
+        return Stream.generate(dataSupplier).limit(count).collect(Collectors.toList());
         }
-        return result;
-    }
+
+    private Object generateGroups() {
+        return generateData (() -> new GroupData()
+                .withName(CommonFunctions.randomString( 4))
+                .withHeader(CommonFunctions.randomString(5))
+                .withFooter(CommonFunctions.randomString(6)));
+        }
 
     private Object generateContacts() {
-        var result = new ArrayList<ContactData>();
-        for (int i = 0; i < count; i++){
-            result.add(new ContactData().withFioAndNumber(CommonFunctions.randomString(i*3), CommonFunctions.randomString(i*2),CommonFunctions.randomString(i*4),CommonFunctions.randomString(i*3)));
+        return generateData(() -> new ContactData()
+                .withFioAndNumber(CommonFunctions.randomString(3),CommonFunctions.randomString(12),CommonFunctions.randomString(4),CommonFunctions.randomString(13)));
         }
-        return result;
-    }
 }
 
 

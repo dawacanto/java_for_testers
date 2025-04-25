@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class CollectionTest {
 
@@ -29,5 +30,13 @@ public class CollectionTest {
 
         list.set(0, "d");
         list.add(0, "h");
+    }
+
+    @Test
+    void setTest(){
+        var set = Set.copyOf(List.of("a","b","c","a"));
+        Assertions.assertEquals(3, set.size());
+        var element = set.stream().findAny().get();
+
     }
 }
